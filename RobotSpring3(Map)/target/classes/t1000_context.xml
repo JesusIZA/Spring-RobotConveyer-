@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-lazy-init="true"
+	>
+	<import resource="sony_context.xml"/>
+	<import resource="toshiba_context.xml"/>
+	<import resource="database_context.xml"/>
+		
+	<bean id="t1000+new-1" class="ru.javabegin.training.spring.impls.robot.ModelT1000"
+		parent="baseModel"
+		depends-on="dataBaseBean">
+		
+ 		<constructor-arg value="yellow" index="3" type="String" />
+ 		<constructor-arg value="2005" index="4" type="int" />
+ 		<constructor-arg value="true" index="5" type="boolean" />
+ 		
+ 		<property name="hand" ref="toshibaHand" />
+ 	</bean>
+ 	
+ 	<bean id="fireReplacer" class="ru.javabegin.training.spring.impls.robot.fireReplacer" />
+ 	
+ 	<bean id="t1000" class="ru.javabegin.training.spring.impls.robot.ModelT1000"
+		parent="baseModel"
+		depends-on="dataBaseBean"
+		scope="prototype">
+		
+ 		<constructor-arg value="yellow" index="3" type="String" />
+ 		<constructor-arg value="2005" index="4" type="int" />
+ 		<constructor-arg value="true" index="5" type="boolean" />
+ 		
+ 		<property name="hand" ref="toshibaHand" />
+ 	</bean>
+	
+	<bean id="baseModel" abstract="true">
+ 		<constructor-arg ref="sonyHand" index="0" />
+ 		<constructor-arg ref="sonyLeg" index="1" />
+ 		<constructor-arg ref="sonyHead" index="2" />
+ 	</bean>
+
+<!-- 	<bean id="t1000" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg ref="sonyHand" /> -->
+<!-- 		<constructor-arg ref="sonyLeg" /> -->
+<!-- 		<constructor-arg ref="sonyHead" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+1" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<property name="hand" ref="toshibaHand" /> -->
+<!-- 		<property name="leg" ref="toshibaLeg" /> -->
+<!-- 		<property name="head" ref="toshibaHead" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+2" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg ref="sonyHand" /> -->
+<!-- 		<constructor-arg ref="sonyLeg" /> -->
+<!-- 		<constructor-arg ref="sonyHead" /> -->
+
+<!-- 		<property name="hand" ref="toshibaHand" /> -->
+<!-- 		<property name="head" ref="toshibaHead" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+3" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg value="yellow" /> -->
+<!-- 		<constructor-arg value="2012" /> -->
+<!-- 		<constructor-arg value="true" /> -->
+
+<!-- 		<property name="hand" ref="toshibaHand" /> -->
+<!-- 		<property name="head" ref="toshibaHead" /> -->
+<!-- 		<property name="leg" ref="sonyLeg" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+4" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg value="2013" index="1" /> -->
+<!-- 		<constructor-arg value="yellow" index="0" /> -->
+<!-- 		<constructor-arg value="true" index="2" /> -->
+
+<!-- 		<property name="hand" ref="toshibaHand" /> -->
+<!-- 		<property name="head" ref="toshibaHead" /> -->
+<!-- 		<property name="leg" ref="sonyLeg" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+5" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg value="yellow" index="0" type="String" /> -->
+<!-- 		<constructor-arg value="2013" index="1" type="int" /> -->
+<!-- 		<constructor-arg value="true" index="2" type="boolean" /> -->
+
+<!-- 		<property name="hand" ref="toshibaHand" /> -->
+<!-- 		<property name="head" ref="toshibaHead" /> -->
+<!-- 		<property name="leg" ref="sonyLeg" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="t1000+6" class="ru.javabegin.training.spring.impls.robot.ModelT1000" -->
+<!-- 		p:head-ref="toshibaHead" p:hand-ref="sonyHand" p:leg-ref="sonyLeg"> -->
+
+<!-- 		<constructor-arg value="yellow" index="0" type="String" /> -->
+<!-- 		<constructor-arg value="2013" index="1" type="int" /> -->
+<!-- 		<constructor-arg value="true" index="2" type="boolean" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="t1000+Empty" class="ru.javabegin.training.spring.impls.robot.ModelT1000"> -->
+<!-- 		<constructor-arg ref="sonyHand" /> -->
+<!-- 		<constructor-arg ref="sonyLeg" /> -->
+<!-- 		<constructor-arg ref="sonyHead" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="t1000+prot" class="ru.javabegin.training.spring.impls.robot.ModelT1000" -->
+<!-- 		scope="prototype" -->
+<!-- 		p:head-ref="toshibaHead" p:hand-ref="sonyHand" p:leg-ref="sonyLeg"> -->
+
+<!-- 		<constructor-arg value="yellow" index="0" type="String" /> -->
+<!-- 		<constructor-arg value="2013" index="1" type="int" /> -->
+<!-- 		<constructor-arg value="true" index="2" type="boolean" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="t1000+on" class="ru.javabegin.training.spring.impls.robot.ModelT1000" -->
+<!-- 		depends-on="dataBaseBean"> -->
+		
+<!-- 		<constructor-arg ref="sonyHand" /> -->
+<!-- 		<constructor-arg ref="sonyLeg" /> -->
+<!-- 		<constructor-arg ref="sonyHead" /> -->
+<!-- 	</bean> -->
+
+
+</beans>
